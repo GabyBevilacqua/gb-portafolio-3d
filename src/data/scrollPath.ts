@@ -4,7 +4,7 @@ export const scrollPath = [
       {
     // Punto de partida (más lejos, centrado)
     camPos: new THREE.Vector3(0, 8, 15), // Más lejos y alto
-    lookAt: new THREE.Vector3(0, 2, -15), // Apunta al primer objeto
+    lookAt: new THREE.Vector3(0, 2.8, -15), // Apunta al primer objeto
   },
   {
     // Sobre mí (esfera)
@@ -14,7 +14,7 @@ export const scrollPath = [
   {
     // Proyectos (cubo)
     camPos: new THREE.Vector3(-14, 5, -15), // Más cerca y a la izquierda
-    lookAt: new THREE.Vector3(-10, 2, -20),
+    lookAt: new THREE.Vector3(-10, 3.5, -20),
   },
   {
     // Estudios y habilidades (cono)

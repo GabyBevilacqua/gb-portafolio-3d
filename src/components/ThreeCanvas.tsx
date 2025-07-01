@@ -11,6 +11,7 @@ import SectionLabel from './SectionLabel';
 import AnimatedSection from './AnimatedSection';
 import { useRouter } from 'next/navigation';
 import ClickableSection from './ClickableSection';
+import TerrainPlane from './TerrainPlane'; // Asegúrate de importar el nuevo componente TerrainPlane
 
 
 function CameraLookAt({ target = [0, 5, -30] }) {
@@ -47,20 +48,17 @@ export default function ThreeCanvas() {
         <ScrollCamera />
 
         {/* Suelo tipo montañoso */}
-        <mesh rotation={[-Math.PI / 2, 0, 0]}>
-          <planeGeometry args={[200, 200, 64, 64]} />
-          <meshStandardMaterial color="#d9c5a0" wireframe={false} />
-        </mesh>
+        <TerrainPlane />
 
         {/* Árboles distribuidos aleatoriamente */}
         <Tree position={[-2, 0, -4]} />
-        <Tree position={[3, 0, -6]} />
+        <Tree position={[3, 0.9, -6]} />
         <Tree position={[0, 0, 0]} />
 
         {/* Elementos geométricos como secciones */}
 
         {/* ----------------------------Sección 1 --------------------------------*/}
-        <AnimatedSection position={[10, 1.5, -10]}>
+        <AnimatedSection position={[10, 2.8, -10]}>
           <mesh> {/* x , y, z */}
             <sphereGeometry args={[1.5, 32, 32]} />
             <meshStandardMaterial color="skyblue" />
@@ -69,7 +67,7 @@ export default function ThreeCanvas() {
         </AnimatedSection>
 
         <ClickableSection  // para la navegación a las paginas
-          position={[10, 1.5, -10]}
+          position={[10, 2.8, -10]}
           label="Sobre mí"
           route="/about"
           geometry={<sphereGeometry args={[1.5, 32, 32]} />}
@@ -77,14 +75,14 @@ export default function ThreeCanvas() {
         />
 
         {/* -------------------------Sección 2 -----------------------------*/}
-        <mesh position={[-10, 1, -20]}>
+        <mesh position={[-10, 3.5, -20]}>
           <boxGeometry args={[2, 2, 2]} />
           <meshStandardMaterial color="salmon" />
         </mesh>
         <SectionLabel position={[-10, 3, -20]} label="Proyectos" />
 
         <ClickableSection
-          position={[-10, 1, -20]}
+          position={[-10, 3.5, -20]}
           label="Proyectos"
           route="/projects"
           geometry={<boxGeometry args={[2, 2, 2]} />}
