@@ -3,6 +3,43 @@
 import { useFrame, useThree } from '@react-three/fiber';
 import { useScroll } from '@react-three/drei';
 import { useRef } from 'react';
+import * as THREE from 'three';
+
+import { cameraCurve } from '../data/scrollPath';
+
+export default function ScrollCamera() {
+  const { camera } = useThree();
+  const scroll = useScroll();
+
+  useFrame(() => {
+    // scroll.offset va de 0 a 1
+    const t = scroll.offset;
+    const camPos = cameraCurve.getPoint(t);
+    camera.position.copy(camPos);
+
+    // Opcional: para lookAt, puedes usar un punto un poco más adelante en la curva
+    const lookAtPos = cameraCurve.getPoint(Math.min(t + 0.01, 1));
+    camera.lookAt(lookAtPos);
+  });
+
+  return null;
+}
+// Este componente maneja el desplazamiento de la cámara basado en el scroll del usuario
+
+/* 
+
+    // Scroll va de 0 a 1, lo transformamos en movimiento sobre el eje Z
+    // Sube la cámara (y=15), aléjala (z)
+    const z = -scroll.offset * 100 + 20; // +20 para empezar más lejos
+    targetPosition.current.set(0, 8, z); // y=15 para estar más arriba
+    camera.position.lerp(targetPosition.current, 0.05);
+    camera.lookAt(0, 3, z - 30); // Mira más hacia el horizonte
+
+
+    
+import { useFrame, useThree } from '@react-three/fiber';
+import { useScroll } from '@react-three/drei';
+import { useRef } from 'react';
 import { scrollPath } from '../data/scrollPath';
 import * as THREE from 'three';
 
@@ -37,15 +74,5 @@ export default function ScrollCamera() {
 
 return null;
 }
-// Este componente maneja el desplazamiento de la cámara basado en el scroll del usuario
-
-/* 
-
-    // Scroll va de 0 a 1, lo transformamos en movimiento sobre el eje Z
-    // Sube la cámara (y=15), aléjala (z)
-    const z = -scroll.offset * 100 + 20; // +20 para empezar más lejos
-    targetPosition.current.set(0, 8, z); // y=15 para estar más arriba
-    camera.position.lerp(targetPosition.current, 0.05);
-    camera.lookAt(0, 3, z - 30); // Mira más hacia el horizonte
 
 */

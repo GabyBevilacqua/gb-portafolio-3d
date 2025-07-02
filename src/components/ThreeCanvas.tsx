@@ -12,6 +12,7 @@ import AnimatedSection from './AnimatedSection';
 import { useRouter } from 'next/navigation';
 import ClickableSection from './ClickableSection';
 import TerrainPlane from './TerrainPlane'; // Asegúrate de importar el nuevo componente TerrainPlane
+import { CameraPathDebug } from './CameraPathDebug';
 
 
 function CameraLookAt({ target = [0, 5, -30] }) {
@@ -47,6 +48,9 @@ export default function ThreeCanvas() {
         {/* Cámara que se mueve con el scroll */}
         <ScrollCamera />
 
+        {/* Visualización del recorrido de la cámara */}
+        <CameraPathDebug />
+
         {/* Suelo tipo montañoso */}
         <TerrainPlane />
 
@@ -75,7 +79,7 @@ export default function ThreeCanvas() {
         />
 
         {/* -------------------------Sección 2 -----------------------------*/}
-        <mesh position={[-10, 3.5, -20]}>
+        <mesh position={[-10, 3.6, -20]}>
           <boxGeometry args={[2, 2, 2]} />
           <meshStandardMaterial color="salmon" />
         </mesh>
@@ -90,14 +94,14 @@ export default function ThreeCanvas() {
         />
 
         {/* -------------------------Sección 3 ------------------------------*/}
-        <mesh position={[0, 1, -40]}>
+        <mesh position={[0, 3.6, -40]}>
           <coneGeometry args={[1.5, 3, 8]} />
           <meshStandardMaterial color="gold" />
         </mesh>
         <SectionLabel position={[0, 3, -40]} label="Estudios y habilidades" />
 
         <ClickableSection
-          position={[0, 1, -40]}
+          position={[0, 3.6, -40]}
           label="Estudios y habilidades"
           route="/studies"
           geometry={<coneGeometry args={[1.5, 3, 8]} />}
@@ -105,14 +109,14 @@ export default function ThreeCanvas() {
         />
 
         {/* ---------------------------Sección 4 ----------------------------------*/}
-        <mesh position={[15, 1.5, -60]}>
+        <mesh position={[15, 0, -60]}>
           <torusGeometry args={[1, 0.5, 16, 100]} />
           <meshStandardMaterial color="lightgreen" />
         </mesh>
         <SectionLabel position={[15, 3, -60]} label="Arte" />
 
         <ClickableSection
-          position={[15, 1.5, -60]}
+          position={[15, 0, -60]}
           label="Arte"
           route="/art"
           geometry={<torusGeometry args={[1, 0.5, 16, 100]} />}
@@ -120,14 +124,14 @@ export default function ThreeCanvas() {
         />
 
         {/* ------------------------------Sección 5 ---------------------------------*/}
-        <mesh position={[-10, 1.7, -80]}>
+        <mesh position={[-10, 0, -80]}>
           <octahedronGeometry args={[1.8]} />
           <meshStandardMaterial color="plum" />
         </mesh>
         <SectionLabel position={[-10, 3, -80]} label="Contacto" />
 
         <ClickableSection
-          position={[-10, 1.7, -80]}
+          position={[-10, 0, -80]}
           label="Contacto"
           route="/contact"
           geometry={<octahedronGeometry args={[1.8]} />}
